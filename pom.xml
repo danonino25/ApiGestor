@@ -14,7 +14,9 @@
 	<name>Ejercicio5MyAPIGestor</name>
 	<description>Proyecto My API Rest</description>
 	<properties>
-		<java.version>17</java.version>
+		<java.version>21</java.version>
+    	<maven.compiler.source>21</maven.compiler.source>
+   		<maven.compiler.target>21</maven.compiler.target>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -44,6 +46,46 @@
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
 			</plugin>
+			<!-- Plugin de Spring Boot -->
+        <plugin>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-maven-plugin</artifactId>
+        </plugin>
+
+        <!-- 1. SonarQube Scanner Plugin -->
+        <plugin>
+            <groupId>org.sonarsource.scanner.maven</groupId>
+            <artifactId>sonar-maven-plugin</artifactId>
+            <version>5.5.0.6356</version>
+        </plugin>
+
+        <!-- 2. JaCoCo Plugin (Métricas de Cobertura) -->
+        <plugin>
+            <groupId>org.jacoco</groupId>
+            <artifactId>jacoco-maven-plugin</artifactId>
+            <version>0.8.11</version>
+            <executions>
+                <execution>
+                    <goals>
+                        <goal>prepare-agent</goal>
+                    </goals>
+                </execution>
+                <execution>
+                    <id>report</id>
+                    <phase>test</phase>
+                    <goals>
+                        <goal>report</goal>
+                    </goals>
+                </execution>
+            </executions>
+        </plugin>
+
+        <!-- 3. Maven Surefire Plugin (Ejecución de Tests) -->
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-surefire-plugin</artifactId>
+            <version>3.2.5</version>
+        </plugin>
 			<plugin>
 				<groupId>org.jacoco</groupId>
 				<artifactId>jacoco-maven-plugin</artifactId>
