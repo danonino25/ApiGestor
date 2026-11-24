@@ -63,7 +63,8 @@ public class Proyectos {
 	}
 
 	public void setFecha_inicio(String fecha_inicio) {
-		this.fecha_inicio = fecha_inicio;
+		// Fecha vacia del formulario -> NULL (MySQL estricto rechaza '')
+		this.fecha_inicio = (fecha_inicio == null || fecha_inicio.isBlank()) ? null : fecha_inicio;
 	}
 
 	public String getFecha_finalizacion() {
@@ -71,7 +72,8 @@ public class Proyectos {
 	}
 
 	public void setFecha_finalizacion(String fecha_finalizacion) {
-		this.fecha_finalizacion = fecha_finalizacion;
+		// Fecha vacia del formulario -> NULL (MySQL estricto rechaza '')
+		this.fecha_finalizacion = (fecha_finalizacion == null || fecha_finalizacion.isBlank()) ? null : fecha_finalizacion;
 	}
 
 	public String getEstado_proyecto() {

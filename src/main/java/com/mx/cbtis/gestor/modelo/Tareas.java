@@ -63,7 +63,8 @@ public class Tareas {
 	}
 
 	public void setFecha_vencimiento(String fecha_vencimiento) {
-		this.fecha_vencimiento = fecha_vencimiento;
+		// Fecha vacia del formulario -> NULL (MySQL estricto rechaza '')
+		this.fecha_vencimiento = (fecha_vencimiento == null || fecha_vencimiento.isBlank()) ? null : fecha_vencimiento;
 	}
 
 	public String getLista() {
