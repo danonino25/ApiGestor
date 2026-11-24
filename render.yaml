@@ -1,0 +1,33 @@
+# Render Blueprint: despliega Backend (API) y Frontend (Cliente) con un solo clic.
+# Render construye cada servicio a partir de su Dockerfile en GitHub.
+services:
+  # ---------- Backend: API REST ----------
+  - type: web
+    name: apigestor
+    runtime: docker
+    repo: https://github.com/danonino25/ApiGestor
+    branch: main
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon
+    envVars:
+      # Se capturan en el panel de Render (no se suben a GitHub)
+      - key: DATABASE_URL     # jdbc:mysql://<host>:<puerto>/defaultdb?sslMode=REQUIRED
+        sync: false
+      - key: DB_USERNAME
+        sync: false
+      - key: DB_PASSWORD
+        sync: false
+
+  # ---------- Frontend: Thymeleaf + RestTemplate ----------
+  - type: web
+    name: gestor-cliente
+    runtime: docker
+    repo: https://github.com/danonino25/Gestor-Cliente
+    branch: main
+    dockerfilePath: ./Dockerfile
+    plan: free
+    region: oregon
+    envVars:
+      - key: API_URL          # https://apigestor-xxxx.onrender.com (sin "/" al final)
+        sync: false
